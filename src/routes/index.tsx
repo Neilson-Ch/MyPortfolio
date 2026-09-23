@@ -1,21 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight, Download } from "lucide-react";
-import creditWorkflow from "../assets/portfolio/evidence/credit-workflow.png.asset.json";
-import creditInstance from "../assets/portfolio/evidence/credit-instance.png.asset.json";
-import creditDeploymentCode from "../assets/portfolio/evidence/credit-deployment-code.png.asset.json";
-import creditCloudwatchLogs from "../assets/portfolio/evidence/credit-cloudwatch-logs.png.asset.json";
-import creditFormPrimary from "../assets/portfolio/evidence/credit-form-primary.png.asset.json";
-import creditFormSecondary from "../assets/portfolio/evidence/credit-form-secondary.png.asset.json";
-import creditPredictionOutput from "../assets/portfolio/evidence/credit-prediction-output.png.asset.json";
-import cherryConfusionMatrix from "../assets/portfolio/evidence/cherry-confusion-matrix.png.asset.json";
-import cherryAccuracyCurve from "../assets/portfolio/evidence/cherry-accuracy-curve.png.asset.json";
-import cganGeneratedSamples from "../assets/portfolio/evidence/cgan-generated-samples.png.asset.json";
-import cganLossCurves from "../assets/portfolio/evidence/cgan-loss-curves.png.asset.json";
-import clusteringSilhouette from "../assets/portfolio/evidence/clustering-silhouette.png.asset.json";
-import clusteringPca from "../assets/portfolio/evidence/clustering-pca.png.asset.json";
-import musicCorrelation from "../assets/portfolio/evidence/music-correlation.png.asset.json";
-import musicRecommendOutput from "../assets/portfolio/evidence/music-recommend-output.png.asset.json";
-import salesDashboard from "../assets/portfolio/evidence/sales-dashboard.png.asset.json";
+import creditInterface from "../assets/portfolio/evidence/credit-interface.png";
+import cherryConfusion from "../assets/portfolio/evidence/cherry-confusion.png";
+import cganSamples from "../assets/portfolio/evidence/cgan-samples.png";
+import clusters from "../assets/portfolio/evidence/clusters.png";
+import musicFeatures from "../assets/portfolio/evidence/music-features.png";
+import salesDashboard from "../assets/portfolio/evidence/sales-dashboard.png";
 
 
 export const Route = createFileRoute("/")({
@@ -37,32 +27,22 @@ const CV_URL = "https://drive.google.com/file/d/1KjrpGOEYc5qPgIP8uDHao4TMHCUBn2M
 
 const projects = [
   { id: "credit", no: "01", title: "Credit score prediction", field: "MLOps", metric: "Deployed", description: "A machine learning prototype predicting Poor, Standard, or Good credit-score categories from financial and repayment features.", approach: "Compared Random Forest, XGBoost, and CatBoost, logged validation metrics with MLflow, then packaged the model for a SageMaker endpoint.", lesson: "Model packaging, compatible preprocessing, and request formats determine whether an experiment becomes usable software.", tags: "Python · scikit-learn · XGBoost · CatBoost · MLflow · Streamlit · AWS", evidence: [
-    { src: creditWorkflow.url, alt: "Credit score prediction workflow from data preparation through cloud inference", caption: "End-to-end model and deployment flow", featured: true },
-    { src: creditInstance.url, alt: "Cloud instance status showing the credit deployment running", caption: "Running cloud instance" },
-    { src: creditDeploymentCode.url, alt: "Deployment terminal showing the endpoint smoke test response", caption: "Endpoint deployment and smoke test" },
-    { src: creditCloudwatchLogs.url, alt: "CloudWatch application logs showing successful ping requests", caption: "Observable endpoint activity" },
-    { src: creditFormPrimary.url, alt: "First half of the Streamlit credit score input form", caption: "Customer input interface · part 1" },
-    { src: creditFormSecondary.url, alt: "Second half of the Streamlit credit score input form", caption: "Customer input interface · part 2" },
-    { src: creditPredictionOutput.url, alt: "Credit score result showing a Standard prediction and class probabilities", caption: "Predicted class and probabilities", featured: true },
+    { src: creditInterface, alt: "Credit score prediction interface with customer financial inputs", caption: "Customer input interface", featured: true },
   ] },
   { id: "cherry", no: "02", title: "Cherry leaf disease", field: "Computer vision", metric: "95%", description: "A classifier distinguishing healthy leaves from four disease categories using 3,280 images.", approach: "Prepared the data pipeline and compared an AlexNet baseline with a modified CNN across overall and class-level performance.", lesson: "The baseline misclassified 17 shot-hole examples as healthy, showing why class-level errors matter alongside headline accuracy.", tags: "TensorFlow · Keras · CNN · Classification", evidence: [
-    { src: cherryConfusionMatrix.url, alt: "Confusion matrix for the cherry leaf disease classifier", caption: "Class-level confusion matrix" },
-    { src: cherryAccuracyCurve.url, alt: "Training and validation accuracy curves for the cherry leaf model", caption: "Model accuracy by epoch" },
+    { src: cherryConfusion, alt: "Confusion matrix for the cherry leaf disease classifier", caption: "Class-level confusion matrix", featured: true },
   ] },
   { id: "cgan", no: "03", title: "Conditional satellite generation", field: "Generative modelling", metric: "101.66 FID", description: "A Conditional GAN generating 28 × 28 grayscale satellite images conditioned on stadium or oil-and-gas-field labels.", approach: "Compared a fully connected model with a convolutional alternative, with both principal models trained for 100 epochs.", lesson: "Image samples, loss curves, and FID provide different evidence; spatial structure improved results with a smaller model.", tags: "TensorFlow · Keras · CGAN · FID", evidence: [
-    { src: cganGeneratedSamples.url, alt: "Generated stadium and oil field satellite image samples", caption: "Convolutional model outputs" },
-    { src: cganLossCurves.url, alt: "Generator and discriminator loss curves for baseline and modified CGAN models", caption: "Baseline and modified loss curves" },
+    { src: cganSamples, alt: "Generated stadium and oil field satellite image samples", caption: "Generated satellite samples", featured: true },
   ] },
   { id: "clustering", no: "04", title: "Crime incident clustering", field: "Unsupervised", metric: "6,574", description: "An exploratory study grouping environmental, demographic, and infrastructure contexts across 6,574 incident records.", approach: "Handled missing values and outliers, selected features, applied clustering, and profiled the resulting groups with PCA support.", lesson: "Check which features drive separation before interpreting clusters; next steps include per-capita features and stability checks.", tags: "Python · pandas · scikit-learn · PCA · K-Means", evidence: [
-    { src: clusteringSilhouette.url, alt: "Silhouette analysis across candidate cluster counts", caption: "Silhouette analysis" },
-    { src: clusteringPca.url, alt: "PCA projection of the crime incident clusters", caption: "K-Means clusters · PCA projection" },
+    { src: clusters, alt: "PCA projection of the crime incident clusters", caption: "K-Means clusters · PCA projection", featured: true },
   ] },
   { id: "music", no: "05", title: "Content based music recommendation", field: "Similarity search", metric: "5,000", description: "A notebook prototype supporting artist, album, track, and keyword search in an initial catalogue of 5,000 records.", approach: "Connected metadata cleaning with query handling and recommendation logic, returning ranked song details through one function.", lesson: "Different inputs trigger different branches; future evaluation should add labelled queries, Precision@K, and NDCG@K.", tags: "Python · pandas · TF-IDF · Cosine similarity", evidence: [
-    { src: musicCorrelation.url, alt: "Correlation matrix of music recommendation features", caption: "Audio feature correlation matrix" },
-    { src: musicRecommendOutput.url, alt: "Recommendation results for the query red showing track names, artists, album, and popularity", caption: "Sample output · recommend('red')" },
+    { src: musicFeatures, alt: "Correlation matrix of music recommendation features", caption: "Audio feature correlation matrix", featured: true },
   ] },
   { id: "sales", no: "06", title: "Starbucks sales dashboard", field: "Business intelligence", metric: "$156.6K", description: "An interactive Tableau view of revenue, order volume, product mix, and purchasing patterns.", approach: "Prepared sales fields, defined calculated measures, and arranged headline metrics with product and time comparisons.", lesson: "Latte led at $37.5K and activity peaked near 10:00, suggesting questions about product availability and staffing.", tags: "Tableau · KPI design · Sales analysis", evidence: [
-    { src: salesDashboard.url, alt: "Starbucks sales dashboard with revenue, product, hourly, and order charts", caption: "Interactive Tableau sales dashboard" },
+    { src: salesDashboard, alt: "Starbucks sales dashboard with revenue, product, hourly, and order charts", caption: "Tableau sales dashboard", featured: true },
   ] },
 ];
 
@@ -142,8 +122,8 @@ function Index() {
                    <div className="grid gap-4 sm:grid-cols-2">
                      {project.evidence.map((item, evidenceIndex) => (
                        <figure key={item.caption} className={`overflow-hidden border border-line bg-paper p-3 ${item.featured ? "sm:col-span-2" : ""}`}>
-                         <div className={`flex items-center justify-center overflow-hidden bg-surface ${item.featured ? "aspect-[16/9]" : "aspect-[4/3]"}`}>
-                           <img src={item.src} alt={item.alt} className="h-full w-full object-contain" loading="lazy" />
+                         <div className="overflow-hidden bg-surface">
+                           <img src={item.src} alt={item.alt} className="block h-auto w-full" loading="lazy" />
                          </div>
                          <figcaption className="mt-3 flex items-start justify-between gap-3 font-mono text-[10px] uppercase text-mute">
                            <span>{item.caption}</span><span className="shrink-0">{project.no}.{String(evidenceIndex + 1).padStart(2, "0")}</span>
